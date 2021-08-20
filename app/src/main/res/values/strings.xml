@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">ListMovie</string>
+    <string name="poster_movie">Poster movie</string>
+    <string name="add_favourite">Добавить в избранное</string>
+    <string name="movie_name">Movie name: </string>
+    <string name="description">Description: </string>
+    <string name="vote">Vote average: </string>
+    <string name="release_date">Release date: </string>
+    <string name="menu_item_favourite">Favourite</string>
+
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+</resources>
