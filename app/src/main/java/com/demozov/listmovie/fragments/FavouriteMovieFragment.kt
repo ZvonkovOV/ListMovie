@@ -1,5 +1,6 @@
 package com.demozov.listmovie.fragments
 
+import android.content.res.Resources
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -50,7 +51,7 @@ class FavouriteMovieFragment : Fragment() {
             this.findNavController().navigate(action)
         }
         binding.recyclerViewFavourite.adapter = adapter
-        binding.recyclerViewFavourite.layoutManager = GridLayoutManager(this.context, 2)
+        binding.recyclerViewFavourite.layoutManager = GridLayoutManager(this.context, getSpanCount())
         viewModel.allMovies.observe(this.viewLifecycleOwner) { listFavourite ->
             if (!listFavourite.isNullOrEmpty()) {
                 listIdMovie = listFavourite
@@ -74,5 +75,10 @@ class FavouriteMovieFragment : Fragment() {
     private fun download(id: Int) {
         viewModel.getMovie(id)
         numMovie++
+    }
+
+    private fun getSpanCount(): Int {
+        val dMetrics = Resources.getSystem().displayMetrics
+        return ((dMetrics.widthPixels / dMetrics.density) / 150).toInt()
     }
 }

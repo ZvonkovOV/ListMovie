@@ -1,6 +1,9 @@
 package com.demozov.listmovie.fragments
 
+import android.content.res.Resources
+import android.graphics.Rect
 import android.os.Bundle
+import android.util.Log
 import android.view.*
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.viewModels
@@ -52,7 +55,7 @@ class MainMovieFragment : Fragment() {
                 adapter.submitList(tmp)
             }
         }
-        binding.recyclerViewMain.layoutManager = GridLayoutManager(this.context, 2)
+        binding.recyclerViewMain.layoutManager = GridLayoutManager(this.context, getSpanCount())
         viewModel.getMovies(page)
         adapter.setOnReachEndListener(object : OnReachEndListener {
             override fun onReachEnd() {
@@ -76,5 +79,10 @@ class MainMovieFragment : Fragment() {
             }
             else -> super.onOptionsItemSelected(item)
         }
+    }
+
+    private fun getSpanCount(): Int {
+        val dMetrics = Resources.getSystem().displayMetrics
+        return ((dMetrics.widthPixels / dMetrics.density) / 150).toInt()
     }
 }
